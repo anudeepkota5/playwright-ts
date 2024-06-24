@@ -18,10 +18,13 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --reporter=html
     - uses: actions/upload-artifact@v4
-      if: always()
       with:
         name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+        path: playwright-report  # Path to your test report directory
+    - uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: playwright-report  # Directory containing the HTML report
+        branch: gh-pages  # Optional: Branch to deploy to (defaults to gh-pages)
