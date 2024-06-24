@@ -28,3 +28,6 @@ jobs:
         github_token: ${{ secrets.TOKEN }}
         publish_dir: playwright-report  # Directory containing the HTML report
         branch: gh-pages  # Optional: Branch to deploy to (defaults to gh-pages)
+    - name: Post GitHub Pages URL
+      if: success()
+      run: echo "Playwright report is available at https://${{ github.repository_owner }}.github.io/${{ github.repository }}/playwright-report/index.html"
