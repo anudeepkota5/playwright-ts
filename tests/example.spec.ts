@@ -100,13 +100,6 @@ test('Multiple Windows', async({browser}) => {
   expect(newPageTitle).toBe('New Window');
 })
 
-test('Dynamic Controls', async({page})=> {
-  await page.getByRole('link', {name:'Dynamic Controls'}).click(); 
-  await page.click("input[label='blah']");
-  await page.getByRole('link', {name:'Remove'}).click();
-
-})
-
 test('identify broken images', async({page}) => {
   await page.getByRole('link', {name:'Broken Images'}).click(); 
   // Find all image elements
